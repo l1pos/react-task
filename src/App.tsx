@@ -1,10 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./styles/main.scss";
+import HomePage from "./pages/HomePage";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const App = () => {
+  return (
+    <div style={{ padding: 20 }}>
+      <HomePage />
+    </div>
+  );
+};
+
+export default App;
