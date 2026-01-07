@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchArticles } from "../api/articlesApi";
-import type { Article } from "../types/article";
+import { useArticlesContext } from "../context/ArticlesContext";
 
 export const useArticles = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { articles, setArticles } = useArticlesContext();
 
   useEffect(() => {
-    fetchArticles()
-      .then(setArticles)
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    if (articles.length === 0) {
+      fetchArticles().then(setArticles).catch(console.error);
+    }
   }, []);
 
-  return { articles, loading };
+  return { articles };
 };
